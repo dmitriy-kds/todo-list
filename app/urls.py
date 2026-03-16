@@ -9,6 +9,7 @@ from app.views import (
     TagCreateView,
     TagUpdateView,
     TagDeleteView,
+    task_toggle_status,
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path("tags/create/", TagCreateView.as_view(), name="tag_create"),
     path("tags/<int:pk>/update/", TagUpdateView.as_view(), name="tag_update"),
     path("tags/<int:pk>/delete/", TagDeleteView.as_view(), name="tag_delete"),
+    path("tasks/<int:pk>/toggle-status/", task_toggle_status, name="task_toggle_status"),
 
 ]
 

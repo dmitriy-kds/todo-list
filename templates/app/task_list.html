@@ -12,7 +12,14 @@
         <li class="list-group-item border-bottom">
           <div class="d-flex gap-2">
             <span class="font-weight-bold">{{ task.content }}</span> <span class="ml-2 font-weight-bold {% if task.status == False%}text-danger{% else %}text-success{% endif %}">{{ task.get_status_display }}</span>
-            <a class="ml-auto p-2 btn btn-primary align-items-md-end" href="">Complete</a>
+            <form class="ml-auto p-2 align-items-md-end" action="{% url 'app:task_toggle_status' pk=task.pk %}">
+              {% csrf_token %}
+              {% if task.status %}
+                <input class="btn btn-secondary" type="submit" value="Undo">
+              {% else %}
+                <input class="btn btn-success" type="submit" value="Complete">
+              {% endif %}
+            </form>
           </div>
           <span style="font-size: small">Created: {{ task.created_at }}</span>
           <br>
