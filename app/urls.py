@@ -12,6 +12,7 @@ from app.views import (
     task_toggle_status,
 )
 
+
 urlpatterns = [
     path("", TaskListView.as_view(), name="task_list"),
     path("tasks/create/", TaskCreateView.as_view(), name="task_create"),
