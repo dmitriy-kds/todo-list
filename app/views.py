@@ -18,9 +18,10 @@ class TaskCreateView(generic.CreateView):
     success_url = reverse_lazy("app:task_list")
 
 
-
 class TaskUpdateView(generic.UpdateView):
-    pass
+    model = Task
+    form_class = TaskCreateForm
+    success_url = reverse_lazy("app:task_list")
 
 
 class TaskDeleteView(generic.DeleteView):
