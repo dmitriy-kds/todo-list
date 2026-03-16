@@ -25,7 +25,8 @@ class TaskUpdateView(generic.UpdateView):
 
 
 class TaskDeleteView(generic.DeleteView):
-    pass
+    model = Task
+    success_url = reverse_lazy("app:task_list")
 
 
 class TagListView(generic.ListView):
@@ -45,4 +46,5 @@ class TagUpdateView(generic.UpdateView):
 
 
 class TagDeleteView(generic.DeleteView):
-    pass
+    model = Tag
+    success_url = reverse_lazy("app:tag_list")
