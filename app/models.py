@@ -18,7 +18,9 @@ class Task(models.Model):
         ordering = ["status", "-created_at"]
 
     def __str__(self):
-        return f"Task: {self.content}, Status: {self.status}, Created at: {self.created_at}"
+        return (f"Task: {self.content}, "
+                f"Status: {self.status}, "
+                f"Created at: {self.created_at}")
 
 
 class Tag(models.Model):
