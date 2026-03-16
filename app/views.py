@@ -50,6 +50,6 @@ class TagDeleteView(generic.DeleteView):
 
 def task_toggle_status(request: HttpRequest, pk: int) -> HttpResponseRedirect:
     task = Task.objects.get(pk=pk)
-    task_status = not task.status
+    task.status = not task.status
     task.save()
     return HttpResponseRedirect(reverse("app:task_list"))
