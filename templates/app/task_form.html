@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  {{ object|yesno:"Update, Create" }}
+  {{ object|yesno:"Update, Create" }} task
   <form action="" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
