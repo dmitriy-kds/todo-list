@@ -1,3 +1,19 @@
 from django.db import models
 
-# Create your models here.
+
+class Task(models.Model):
+    content = models.TextField(max_length=500, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    deadline = models.DateTimeField(blank=True, null=True)
+    status = models.BooleanField(default=False)
+    tags = models.ManyToManyField("Tag", related_name="tasks")
+
+    class Meta:
+        verbose_name_plural = "tasks"
+
+    def __str__(self):
+        return f"Task: {self.content}, Status: {self.status}, Created at: {self.created_at}"
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100, unique=True)
