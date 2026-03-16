@@ -1,18 +1,17 @@
+from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.shortcuts import render
 
-
-def index_view(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Index page")
+from app.models import Task
 
 
 class TaskListView(generic.ListView):
-    pass
+    model = Task
 
 
 class TaskCreateView(generic.CreateView):
-    pass
+    model = Task
 
 
 class TaskUpdateView(generic.UpdateView):
