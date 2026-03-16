@@ -30,7 +30,7 @@ class TaskDeleteView(generic.DeleteView):
 
 
 class TagListView(generic.ListView):
-    pass
+    model = Tag
 
 
 class TagCreateView(generic.CreateView):

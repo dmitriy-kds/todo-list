@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between">
+      <h2>Tags</h2>
+      <a class="btn btn-primary align-items-md-end" href="{% url 'app:tag_create' %}">Add</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row border-top py-2">
+      <div class="col-sm">
+        <b>Name</b>
+      </div>
+      <div class="col-sm">
+        <b>Update</b>
+      </div>
+      <div class="col-sm">
+        <b>Delete</b>
+      </div>
+    </div>
+  </div>
+{% for tag in tag_list %}
+  <div class="container">
+    <div class="row border-top py-2">
+      <div class="col-sm">
+        {{ tag.name }}
+      </div>
+      <div class="col-sm">
+        <a class="btn btn-light" href="{% url 'app:tag_update' pk=tag.pk %}">Update</a>
+      </div>
+      <div class="col-sm">
+        <a class="btn btn-light" href="{% url 'app:tag_delete' pk=tag.pk %}">Delete</a>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  No tags
+{% endfor %}
+{% endblock %}
