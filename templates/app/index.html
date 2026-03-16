@@ -1,5 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-  this is index
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between">
+      <h2>TODO list</h2>
+      <a class="btn btn-primary align-items-md-end" href="">Add task</a>
+    </div>
+
+    {% for task in task_list %}
+      <ul class="list-group">
+        <li class="list-group-item border-bottom">
+          <div class="d-flex gap-2">
+            <span class="font-weight-bold">{{ task.content }}</span> <span class="ml-2 font-weight-bold {% if task.status == False%}text-danger{% else %}text-success{% endif %}">{{ task.get_status_display }}</span>
+            <a class="ml-auto p-2 btn btn-primary align-items-md-end" href="">Complete</a>
+          </div>
+          <span style="font-size: small">Created: {{ task.created_at }}</span>
+          <br>
+          <span class="font-weight-bold text-muted">Tags:</span>
+          {% for tag in task.tags.all %}
+            <span class="text-muted">{{ tag.name }}</span>
+          {% empty %}
+            No tags
+          {% endfor %}
+          <a class="btn btn-primary" href="{% url 'app:task_update' pk=task.pk%}">Update</a>
+          <a class="btn btn-danger" href="{% url 'app:task_delete' pk=task.pk%}">Delete</a>
+        </li>
+      </ul>
+
+
+    {% empty %}
+      No tasks
+    {% endfor %}
+  </div>
 {% endblock %}
