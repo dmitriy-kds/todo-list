@@ -9,7 +9,7 @@ from app.views import (
     TagCreateView,
     TagUpdateView,
     TagDeleteView,
-    task_toggle_status,
+    TaskToggleStatusView,
 )
 
 
@@ -45,7 +45,7 @@ urlpatterns = [
     ),
     path(
         "tasks/<int:pk>/toggle-status/",
-        task_toggle_status,
+        TaskToggleStatusView.as_view(),
         name="task_toggle_status"
     ),
 

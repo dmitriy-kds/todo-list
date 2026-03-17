@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from app.forms import TaskCreateForm, TagCreateForm
 from app.models import Task, Tag
@@ -48,8 +48,9 @@ class TagDeleteView(generic.DeleteView):
     success_url = reverse_lazy("app:tag_list")
 
 
-def task_toggle_status(request: HttpRequest, pk: int) -> HttpResponseRedirect:
-    task = Task.objects.get(pk=pk)
-    task.status = not task.status
-    task.save()
-    return HttpResponseRedirect(reverse("app:task_list"))
+class TaskToggleStatusView(View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
+        task = Task.objects.get(pk=pk)
+        task.status = not task.status
+        task.save()
+        return HttpResponseRedirect(reverse("app:task_list"))
