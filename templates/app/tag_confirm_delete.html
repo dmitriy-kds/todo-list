@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  You're about to delete the following tag: {{ tag.name }}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Delete">
+  </form>
+{% endblock %}
